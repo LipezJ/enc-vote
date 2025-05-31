@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Firma Cegada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f6fb;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 24px;
+        }
+        p {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #4f8cff;
+        }
+        form {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        button[type="submit"] {
+            background: linear-gradient(90deg, #4f8cff 0%, #38c6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #38c6ff 0%, #4f8cff 100%);
+        }
+        pre {
+            background: #f4f6fb;
+            padding: 8px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            font-family: 'Roboto Mono', 'Consolas', monospace;
+            font-size: 0.98em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Firma Cegada</h1>
+        <p>Candidato seleccionado: <strong>{{ candidato }}</strong></p>
+        <p>Nonce (hex): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ nonce_hex }}</code></pre></p>
+        <p>Mensaje entero (m): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ m }}</code></pre></p>
+        <p>Factor de cegado (r): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ r }}</code></pre></p>
+        <p>Firma cegada (s'): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ s_blinded }}</code></pre></p>
+
+        <form action="{{ url_for('vote') }}" method="post">
+            <!-- Enviamos también candidato y nonce_hex -->
+            <input type="hidden" name="candidato" value="{{ candidato }}">
+            <input type="hidden" name="nonce_hex" value="{{ nonce_hex }}">
+            <input type="hidden" name="m" value="{{ m }}">
+            <input type="hidden" name="r" value="{{ r }}">
+            <input type="hidden" name="s_blinded" value="{{ s_blinded }}">
+            <button type="submit">Destapar y Continuar</button>
+        </form>
+    </div>
+</body>
+</html>

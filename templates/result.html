@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Voto Registrado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f6fb;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px 24px 24px 24px;
+            text-align: center;
+        }
+        h1 {
+            color: #27ae60;
+            margin-bottom: 24px;
+        }
+        p {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #4f8cff;
+        }
+        a {
+            display: inline-block;
+            margin-top: 24px;
+            background: linear-gradient(90deg, #4f8cff 0%, #38c6ff 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+        a:hover {
+            background: linear-gradient(90deg, #38c6ff 0%, #4f8cff 100%);
+        }
+        pre {
+            background: #f4f6fb;
+            padding: 8px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            font-family: 'Roboto Mono', 'Consolas', monospace;
+            font-size: 0.98em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Gracias por votar!</h1>
+        <p>Candidato: <strong>{{ candidato }}</strong></p>
+        <p>Nonce (hex): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ nonce_hex }}</code></pre></p>
+        <p>Mensaje entero (m): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ m }}</code></pre></p>
+        <p>Firma (s): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ s }}</code></pre></p>
+        <p>Su voto ha sido verificado y registrado en el minibloque.</p>
+        <a href="{{ url_for('index') }}">Volver al inicio</a>
+    </div>
+</body>
+</html>
