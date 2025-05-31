@@ -71,7 +71,6 @@
         <p>Firma real (s): <pre style="background:#f4f6fb;padding:8px;border-radius:6px;"><code>{{ s }}</code></pre></p>
 
         <form action="{{ url_for('result') }}" method="post">
-            <!-- Enviamos candidato, nonce_hex, m, s -->
             <input type="hidden" name="candidato" value="{{ candidato }}">
             <input type="hidden" name="nonce_hex" value="{{ nonce_hex }}">
             <input type="hidden" name="m" value="{{ m }}">
